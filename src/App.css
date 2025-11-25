@@ -8,6 +8,14 @@
   overflow: hidden;
   font-family: "Inter", sans-serif;
 }
+.top-header {
+  background: white;
+  padding: 14px 24px;
+  font-size: 22px;
+  font-weight: 700;
+  border-bottom: 1px solid #ddd;
+}
+
 
 .sidebar-newchat {
   display: flex;

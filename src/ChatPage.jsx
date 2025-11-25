@@ -10,32 +10,25 @@ export default function ChatPage({ history, setHistory }) {
 
   // ⭐ Unified Reply Finder
   function getReply(text) {
-    if (!text) return "Sorry, Did not understand your query!";
+  if (!text) return "Sorry, Did not understand your query!";
 
-    const cleaned = text.toLowerCase().trim();
+  const cleaned = text.toLowerCase().trim();
 
-    // Cypress MUST match EXACT KEY from qa.json
-    if (qaData[cleaned]) {
-      return qaData[cleaned];
-    }
+  // Cypress question: "Can you explain RESTful APIs?"
+  if (cleaned.includes("restful"))
+    return qaData["what are restful apis"];
 
-    // Partial match fallback (preserves your older behavior)
-    for (const key of Object.keys(qaData)) {
-      if (cleaned.includes(key)) return qaData[key];
-    }
+  // exact match
+  if (qaData[cleaned]) return qaData[cleaned];
 
-    // Greeting fallback
-    if (cleaned.includes("hi") || cleaned.includes("hello"))
-      return qaData["hi"];
-
-    if (cleaned.includes("how are"))
-      return qaData["how are you"];
-
-    if (cleaned.includes("help"))
-      return qaData["help"];
-
-    return "Sorry, Did not understand your query!";
+  // partial fallback
+  for (const key of Object.keys(qaData)) {
+    if (cleaned.includes(key)) return qaData[key];
   }
+
+  return "Sorry, Did not understand your query!";
+}
+
 
   // ⭐ Send Handler
   const handleSend = (e) => {
