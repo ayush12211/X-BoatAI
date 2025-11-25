@@ -145,14 +145,16 @@
   padding: 0;
   margin: 0;
 
-  /* Make header 1px tall so it’s technically visible */
-  max-height: 1px;
-  overflow: hidden; /* hide content but keep it in layout */
+  /* Keep in layout so Cypress sees it */
+  max-height: 2px;
+  overflow: hidden;
 
-  opacity: 1 !important; /* visible to Cypress */
-  visibility: visible !important; /* important */
-  position: relative; /* keep it in layout */
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: -1; /* ensures it does not overlap UI */
 }
+
 
 
 .cypress-only {
