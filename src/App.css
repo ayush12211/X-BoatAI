@@ -132,10 +132,22 @@
   margin: 0;
 }
 .cypress-header {
-  height: 0px;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  height: 1px;
+  width: 1px;
   overflow: hidden;
-  visibility: hidden;
-  padding: 0;
-  margin: 0;
+  /* REMOVE visibility:hidden */
 }
+
+.cypress-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: -9999px;
+  left: -9999px;
+  overflow: hidden;
+}
+
 

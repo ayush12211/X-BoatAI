@@ -1,0 +1,7 @@
+{
+  "what are restful apis": "RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol.",
+  "hi": "Hi there! How can I assist you today?",
+  "hello": "Hi there! How can I assist you today?",
+  "how are you": "I'm functioning at full capacity!",
+  "help": "Sure! Tell me what you need help with."
+}

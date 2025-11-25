@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import ChatPage from "./ChatPage.jsx";
@@ -10,6 +10,17 @@ import "./Modal.css";
 
 export default function App() {
   const [history, setHistory] = useState([]);
+  useEffect(() => {
+  localStorage.setItem("botHistory", JSON.stringify(history));
+}, [history]);
+
+useEffect(() => {
+  const saved = localStorage.getItem("botHistory");
+  if (saved) {
+    setHistory(JSON.parse(saved));
+  }
+}, []);
+
 
   return (
     <Router>

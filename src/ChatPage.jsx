@@ -1,77 +1,43 @@
 import React, { useState } from "react";
 import "./ChatPage.css";
 import Modal from "./Modal";
-
-// Smarter match dataset
-const SAMPLE_QA = {
-  hello: "Hi there! How can I assist you today?",
-  "how are you": "I'm functioning at full capacity!",
-  help: "Sure! Tell me what you need help with.",
-  weather:
-    "I don't have live weather data in this demo, but I can explain how to integrate a weather API.",
-  location:
-    "I cannot access your location here, but real apps can request location permission.",
-  temperature:
-    "Temperature is part of weather data. You can integrate a weather API to fetch it.",
-};
-
-const STARTER_CARDS = [
-  {
-    id: 1,
-    title: "Hi, what is the weather",
-    subtitle: "Get immediate AI generated response",
-  },
-  {
-    id: 2,
-    title: "Hi, what is my location",
-    subtitle: "Get immediate AI generated response",
-  },
-  {
-    id: 3,
-    title: "Hi, what is the temperature",
-    subtitle: "Get immediate AI generated response",
-  },
-  {
-    id: 4,
-    title: "Hi, how are you",
-    subtitle: "Get immediate AI generated response",
-  },
-];
+import qaData from "./data/qa.json"; // Cypress-required JSON answers
 
 export default function ChatPage({ history, setHistory }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  function findReplyFor(text) {
+  // ⭐ Unified Reply Finder
+  function getReply(text) {
     if (!text) return "Sorry, Did not understand your query!";
-    const lower = text.toLowerCase();
 
-    // exact match
-    for (const key of Object.keys(SAMPLE_QA)) {
-      if (lower === key) return SAMPLE_QA[key];
+    const cleaned = text.toLowerCase().trim();
+
+    // Cypress MUST match EXACT KEY from qa.json
+    if (qaData[cleaned]) {
+      return qaData[cleaned];
     }
 
-    // partial match
-    for (const key of Object.keys(SAMPLE_QA)) {
-      if (lower.includes(key)) return SAMPLE_QA[key];
+    // Partial match fallback (preserves your older behavior)
+    for (const key of Object.keys(qaData)) {
+      if (cleaned.includes(key)) return qaData[key];
     }
 
-    // fallback
-    if (
-      lower.includes("hi") ||
-      lower.includes("hello") ||
-      lower.includes("hey")
-    )
-      return SAMPLE_QA["hello"];
+    // Greeting fallback
+    if (cleaned.includes("hi") || cleaned.includes("hello"))
+      return qaData["hi"];
 
-    if (lower.includes("how are")) return SAMPLE_QA["how are you"];
+    if (cleaned.includes("how are"))
+      return qaData["how are you"];
 
-    if (lower.includes("help")) return SAMPLE_QA["help"];
+    if (cleaned.includes("help"))
+      return qaData["help"];
 
     return "Sorry, Did not understand your query!";
   }
 
+  // ⭐ Send Handler
   const handleSend = (e) => {
     if (e) e.preventDefault();
     if (!input.trim()) return;
@@ -79,25 +45,34 @@ export default function ChatPage({ history, setHistory }) {
     const userMsg = {
       sender: "user",
       text: input,
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
     };
 
     const botMsg = {
       sender: "ai",
-      text: findReplyFor(input),
-      time: new Date().toLocaleTimeString(),
-      liked: null,
+      text: getReply(input),
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      liked: null
     };
 
     setMessages((prev) => [...prev, userMsg, botMsg]);
     setInput("");
   };
 
+  // Starter cards condition
+  const STARTER_CARDS = [
+    { id: 1, title: "Hi", subtitle: "Get immediate AI response" },
+    { id: 2, title: "Hello", subtitle: "Quick greeting response" },
+    { id: 3, title: "How are you", subtitle: "Ask about AI status" },
+    { id: 4, title: "Help", subtitle: "Get assistance" }
+  ];
+
   const handleStarterClick = (card) => {
     setInput(card.title);
-    setTimeout(() => handleSend(), 20);
+    setTimeout(() => handleSend(), 50);
   };
 
+  // Thumbs Like/Dislike
   const toggleLike = (index, value) => {
     setMessages((prev) => {
       const updated = [...prev];
@@ -106,19 +81,21 @@ export default function ChatPage({ history, setHistory }) {
     });
   };
 
+  // Save & Feedback
   const handleFeedbackSubmit = ({ rating, feedback }) => {
     const convo = {
       id: Date.now(),
       messages,
       rating,
-      feedback,
+      feedback
     };
     setHistory([...history, convo]);
   };
 
   return (
     <div className="chat-area">
-      {/* HERO — only when no messages */}
+      
+      {/* HERO Section */}
       {messages.length === 0 && (
         <section className="hero">
           <h1>How Can I Help You Today?</h1>
@@ -146,16 +123,24 @@ export default function ChatPage({ history, setHistory }) {
       <div className="conv-list">
         {messages.map((m, i) => (
           <div key={i} className="msg">
+            
+            {/* Avatar */}
             <img
-      src={m.sender === "user" ? "/person.png" : "/logo.png"}
-      alt="avatar"
-      className="msg-avatar"
-    />
+              src={m.sender === "user" ? "/person.png" : "/logo.png"}
+              alt="avatar"
+              className="msg-avatar"
+            />
 
+            {/* BODY */}
             <div className="msg-body">
-              <div className="who">{m.sender === "ai" ? "Soul AI" : "You"}</div>
+              <span className="who">
+                {m.sender === "ai" ? "Soul AI" : "You"}
+              </span>
+
+              {/* Cypress expects EXACTLY <p class="text"> */}
               <p className="text">{m.text}</p>
-              <div className="ts">{m.time}</div>
+
+              <p className="ts">{m.time}</p>
 
               {m.sender === "ai" && (
                 <div className="msg-actions floating">
@@ -182,14 +167,12 @@ export default function ChatPage({ history, setHistory }) {
       <form className="input-row" onSubmit={handleSend}>
         <input
           className="chat-input"
-          placeholder="Message Bot AI..."
+          placeholder="Message Bot AI..."  // Cypress REQUIRED
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <button type="submit" className="btn-ask">
-          Ask
-        </button>
+        <button type="submit" className="btn-ask">Ask</button>
 
         <button
           type="button"
@@ -200,7 +183,7 @@ export default function ChatPage({ history, setHistory }) {
         </button>
       </form>
 
-      {/* FEEDBACK MODAL */}
+      {/* MODAL */}
       {showModal && (
         <Modal
           onClose={() => setShowModal(false)}
