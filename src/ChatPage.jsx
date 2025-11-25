@@ -16,10 +16,26 @@ const SAMPLE_QA = {
 };
 
 const STARTER_CARDS = [
-  { id: 1, title: "Hi, what is the weather", subtitle: "Get immediate AI generated response" },
-  { id: 2, title: "Hi, what is my location", subtitle: "Get immediate AI generated response" },
-  { id: 3, title: "Hi, what is the temperature", subtitle: "Get immediate AI generated response" },
-  { id: 4, title: "Hi, how are you", subtitle: "Get immediate AI generated response" },
+  {
+    id: 1,
+    title: "Hi, what is the weather",
+    subtitle: "Get immediate AI generated response",
+  },
+  {
+    id: 2,
+    title: "Hi, what is my location",
+    subtitle: "Get immediate AI generated response",
+  },
+  {
+    id: 3,
+    title: "Hi, what is the temperature",
+    subtitle: "Get immediate AI generated response",
+  },
+  {
+    id: 4,
+    title: "Hi, how are you",
+    subtitle: "Get immediate AI generated response",
+  },
 ];
 
 export default function ChatPage({ history, setHistory }) {
@@ -42,7 +58,11 @@ export default function ChatPage({ history, setHistory }) {
     }
 
     // fallback
-    if (lower.includes("hi") || lower.includes("hello") || lower.includes("hey"))
+    if (
+      lower.includes("hi") ||
+      lower.includes("hello") ||
+      lower.includes("hey")
+    )
       return SAMPLE_QA["hello"];
 
     if (lower.includes("how are")) return SAMPLE_QA["how are you"];
@@ -98,7 +118,6 @@ export default function ChatPage({ history, setHistory }) {
 
   return (
     <div className="chat-area">
-
       {/* HERO — only when no messages */}
       {messages.length === 0 && (
         <section className="hero">
@@ -136,8 +155,18 @@ export default function ChatPage({ history, setHistory }) {
 
               {m.sender === "ai" && (
                 <div className="msg-actions floating">
-                  <button className="action-btn" onClick={() => toggleLike(i, true)}>👍</button>
-                  <button className="action-btn" onClick={() => toggleLike(i, false)}>👎</button>
+                  <button
+                    className="action-btn"
+                    onClick={() => toggleLike(i, true)}
+                  >
+                    👍
+                  </button>
+                  <button
+                    className="action-btn"
+                    onClick={() => toggleLike(i, false)}
+                  >
+                    👎
+                  </button>
                 </div>
               )}
             </div>
@@ -149,12 +178,14 @@ export default function ChatPage({ history, setHistory }) {
       <form className="input-row" onSubmit={handleSend}>
         <input
           className="chat-input"
-          placeholder="Message Bot AI…"
+          placeholder="Message Bot AI..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <button type="submit" className="btn-ask">Ask</button>
+        <button type="submit" className="btn-ask">
+          Ask
+        </button>
 
         <button
           type="button"

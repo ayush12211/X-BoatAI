@@ -94,3 +94,11 @@
   color: #6a5acd;
   margin: 0;
 }
+.cypress-header {
+  height: 0px;
+  overflow: hidden;
+  visibility: hidden;
+  padding: 0;
+  margin: 0;
+}
+

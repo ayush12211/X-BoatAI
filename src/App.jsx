@@ -13,6 +13,9 @@ export default function App() {
 
   return (
     <Router>
+      <header className="cypress-header">
+        <h1>Bot AI</h1>
+      </header>
       <div className="app-shell">
 
         {/* Mac-style top strip */}
