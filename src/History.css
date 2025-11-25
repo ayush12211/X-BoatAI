@@ -1,20 +1,20 @@
-/* Root layout */
+/* Root Layout */
 .history-root {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-/* LEFT SIDEBAR LIST */
+/* SIDEBAR */
 .history-list {
   width: 200px;
   padding: 20px;
-  background: transparent;
 }
 
 .history-list h2 {
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 10px;
   color: #4a3c8c;
 }
 
@@ -28,90 +28,101 @@
 }
 
 .history-item:hover {
-  background: #e9dbff;
+  background: #e0d3ff;
 }
 
 .history-item.active {
   background: #d4c4ff;
 }
 
-/* RIGHT PANEL */
+/* RIGHT PANEL BACKGROUND */
 .history-right {
   flex: 1;
   padding: 40px;
-  background: linear-gradient(to bottom right, #f4f0ff, #e9ddff);
+  background: linear-gradient(to bottom right, #f3ecff, #e7d9ff);
   overflow-y: auto;
 }
 
 .history-title {
   text-align: center;
   font-size: 30px;
-  color: #222;
-  margin: 0;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .history-subtitle {
-  margin-top: 20px;
-  font-size: 22px;
   font-weight: 700;
-  color: #444;
+  font-size: 22px;
+  margin-bottom: 16px;
 }
 
-/* Conversation card */
+/* Purple Conversation Box */
 .conversation-card {
-  margin-top: 20px;
-  background: rgba(200, 170, 255, 0.35);
+  background: rgba(182, 150, 255, 0.35);
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(150, 120, 200, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(120, 90, 180, 0.2);
 }
 
-/* Conversation messages inside card */
+/* Individual Message */
 .history-msg {
   display: flex;
   gap: 14px;
-  background: #efe7ff;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 16px;
+  background: #efe4ff;
+  border-radius: 16px;
   margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(120, 90, 160, 0.15);
 }
 
-.history-msg .avatar {
-  width: 50px;
-  height: 50px;
-  background: url('/avatar.png') center/cover no-repeat;
+/* Avatar */
+.history-avatar {
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  flex-shrink: 0;
 }
 
-.msg-body .who {
+/* Message Body */
+.history-msg-body {
+  flex: 1;
+}
+
+.who {
   font-weight: 700;
-  margin-bottom: 4px;
+  font-size: 15px;
 }
 
-.msg-body .msg-text {
-  margin: 0;
+.msg-text {
+  margin: 4px 0 6px 0;
+  font-size: 15px;
 }
 
-.msg-body .timestamp {
+.timestamp {
   font-size: 12px;
   color: #777;
-  margin-top: 4px;
 }
 
-/* Rating + feedback box */
+/* Like/Dislike (AI Only) */
+.msg-actions {
+  margin-top: 6px;
+  gap: 10px;
+  opacity: 0.7;
+}
+
+/* Rating Box */
 .rating-box {
-  margin-top: 20px;
-  background: #f8f3ff;
-  padding: 18px;
-  border-radius: 12px;
+  margin-top: 18px;
+  padding: 16px;
+  background: #f4edff;
+  border-radius: 14px;
 }
 
-.stars {
-  color: gold;
-  font-size: 18px;
+.rating-line {
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
 .feedback-line {
-  margin-top: 6px;
+  font-size: 15px;
 }

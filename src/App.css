@@ -9,6 +9,43 @@
   font-family: "Inter", sans-serif;
 }
 
+.sidebar-newchat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3eaff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  width: fit-content;
+}
+
+.sidebar-newchat:hover {
+  background: #e6d7ff;
+}
+
+.sidebar-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar-text {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sidebar-extra-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+
 /* TOP STRIP (Mac Top Bar) */
 .app-top-accent {
   width: 100%;

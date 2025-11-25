@@ -146,7 +146,11 @@ export default function ChatPage({ history, setHistory }) {
       <div className="conv-list">
         {messages.map((m, i) => (
           <div key={i} className="msg">
-            <div className="avatar"></div>
+            <img
+      src={m.sender === "user" ? "/person.png" : "/logo.png"}
+      alt="avatar"
+      className="msg-avatar"
+    />
 
             <div className="msg-body">
               <div className="who">{m.sender === "ai" ? "Soul AI" : "You"}</div>

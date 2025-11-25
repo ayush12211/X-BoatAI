@@ -27,13 +27,22 @@ export default function App() {
           <aside className="app-sidebar">
 
             <Link to="/" className="sidebar-newchat">
-              <img
-                src="/logo.png"
-                alt="logo"
-                style={{ width: "28px", height: "28px", borderRadius: "50%" }}
-              />
-              New Chat
-            </Link>
+  <img
+    src="/logo.png"
+    alt="logo"
+    className="sidebar-icon"
+  />
+
+  <span className="sidebar-text">New Chat</span>
+
+  {/* Extra icon just after the text */}
+  <img
+    src="newChat.png"   // ← replace with your icon file
+    alt="edit-icon"
+    className="sidebar-extra-icon"
+  />
+</Link>
+
 
             <Link to="/history" className="sidebar-pill">
               Past Conversations
