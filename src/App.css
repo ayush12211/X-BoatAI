@@ -1,0 +1,96 @@
+/* ROOT CONTAINER — FULL WIDTH */
+.app-shell {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* TOP STRIP (Mac Top Bar) */
+.app-top-accent {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to right, #ffffff, #f3eaff, #e9dbff, #f3eaff, #ffffff);
+}
+
+/* MAIN LAYOUT: sidebar + stage */
+.app-main {
+  display: flex;
+  width: 1400px;
+  flex: 1;
+  height: calc(100vh - 20px); /* subtract the small top strip */
+}
+
+
+/* LEFT SIDEBAR */
+.app-sidebar {
+  width: 200px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #faf7ff;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Sidebar New Chat */
+.sidebar-newchat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f2eaff;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #3e2c7e;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(120, 100, 160, 0.18);
+}
+
+.sidebar-newchat:hover {
+  background: #e6d7ff;
+}
+
+/* Sidebar Past Conversations Button */
+.sidebar-pill {
+  padding: 12px 16px;
+  background: #d4c4ff;
+  border-radius: 10px;
+  text-align: left;
+  font-weight: 600;
+  text-decoration: none;
+  color: #3e2c7e;
+  box-shadow: 0 2px 5px rgba(140, 120, 180, 0.18);
+}
+
+.sidebar-pill:hover {
+  background: #c9b5ff;
+}
+
+/* FULL-WIDTH RIGHT PANEL */
+.app-stage {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 40px 50px;
+  background: linear-gradient(to bottom right, #f4f0ff, #e9ddff, #f4f0ff);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* "Bot AI" heading inside panel */
+.stage-header {
+  margin-bottom: 25px;
+}
+
+.stage-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #6a5acd;
+  margin: 0;
+}

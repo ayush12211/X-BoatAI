@@ -1,0 +1,237 @@
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 30px;
+}
+
+
+
+.hero {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d2d2d;
+}
+
+.hero .avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 20px auto 0 auto;
+  background: url('/logo.png') center/cover no-repeat;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.card {
+  background: #ffffff; 
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(100, 80, 150, 0.22);
+  border: 1px solid rgba(16, 24, 40, 0.04);
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(100, 80, 150, 0.28);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+}
+
+.card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* Mobile: one column */
+@media (max-width: 860px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.conv-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+
+.msg {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: linear-gradient(
+    90deg,
+    rgba(238, 232, 255, 0.85),
+    rgba(249, 246, 255, 0.95)
+  );
+  padding: 18px;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(18, 12, 40, 0.06);
+  border: 1px solid rgba(16, 24, 40, 0.04);
+}
+
+
+
+.msg .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #fff url('/avatar.png') center/cover no-repeat;
+  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.08);
+}
+
+
+/* Message body */
+.msg-body {
+  flex: 1;
+}
+
+.msg-body .who {
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.msg-body .text {
+  font-size: 15px;
+  color: #111;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.msg-body .ts {
+  font-size: 12px;
+  color: #777;
+}
+
+
+
+.msg-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  color: #777;
+}
+
+.action-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.action-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* fade-in floating effect */
+.msg .floating {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.18s ease-in-out;
+}
+
+.msg:hover .floating {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.input-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 25px;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+  background: #ffffff;
+  font-size: 15px;
+  outline: none;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.04) inset;
+}
+
+
+/* Ask button */
+.btn-ask {
+  background: #bda0ef;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  color: #372465;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 6px 20px rgba(139, 111, 199, 0.25);
+}
+
+.btn-ask:hover {
+  background: #a88be0;
+}
+
+
+/* Save button */
+.btn-save {
+  background: #e5cdf6;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  color: #372465;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-save:hover {
+  background: #d9bef2;
+}
+
+
+/* Small adjustments for small mobile */
+@media (max-width: 520px) {
+  .btn-ask,
+  .btn-save {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}

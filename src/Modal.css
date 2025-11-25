@@ -1,0 +1,78 @@
+/* Modal.css - feedback modal styling (centered, drop-shadow, close X) */
+
+/* overlay */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background: rgba(12,8,20,0.48);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+/* modal box */
+.modal{
+  width: min(740px, 92%);
+  background: linear-gradient(180deg,#fff,#f9f6fb);
+  border-radius:12px;
+  padding:18px;
+  box-shadow: 0 30px 80px rgba(16,24,40,0.3);
+  border:1px solid rgba(16,24,40,0.06);
+  position:relative;
+}
+
+/* header */
+.modal h3{ margin:0; font-size:18px; display:flex; gap:10px; align-items:center; font-weight:700; color:var(--brand-1) }
+
+/* textarea */
+.modal textarea{
+  width:100%;
+  min-height:160px;
+  margin-top:12px;
+  border-radius:10px;
+  border:1px solid rgba(16,24,40,0.08);
+  padding:12px;
+  font-size:14px;
+  resize:vertical;
+}
+
+/* actions */
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  margin-top:14px;
+}
+.modal .btn{
+  padding:10px 16px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+}
+.modal .btn-submit{ background:#cdb3f0; color:#2a174f; font-weight:700 }
+.modal .btn-close{ position:absolute; right:12px; top:12px; background:transparent; border:0; font-size:20px; cursor:pointer; }
+
+/* small screens */
+@media (max-width:520px){
+  .modal{ padding:12px }
+  .modal textarea{ min-height:120px }
+}
+
+.rating-row {
+  margin: 16px 0 8px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.star {
+  color: #ccc;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.selected {
+  color: #b48ce0;
+}
+
