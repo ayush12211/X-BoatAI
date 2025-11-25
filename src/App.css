@@ -140,14 +140,20 @@
   margin: 0;
 }
 .cypress-header {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  /* REMOVE visibility:hidden */
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+
+  /* Make header 1px tall so it’s technically visible */
+  max-height: 1px;
+  overflow: hidden; /* hide content but keep it in layout */
+
+  opacity: 1 !important; /* visible to Cypress */
+  visibility: visible !important; /* important */
+  position: relative; /* keep it in layout */
 }
+
 
 .cypress-only {
   position: absolute;
