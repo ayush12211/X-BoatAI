@@ -1,66 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import "./History.css";
 
 export default function HistoryPage({ history }) {
-  const [selected, setSelected] = useState(null);
-
   return (
     <div className="history-container">
-      
-      {/* LEFT SIDEBAR LIST */}
-      <aside className="history-left">
-        <h2 className="history-title">Past Conversations</h2>
 
-        {history.length === 0 && (
-          <p className="history-empty">No saved conversations yet.</p>
-        )}
+      {/* PAGE TITLE */}
+      <h2 className="history-title">Conversation History</h2>
 
-        {history.map((h) => (
-          <div
-            key={h.id}
-            className="history-item"
-            onClick={() => setSelected(h)}
-          >
-            <span>Conversation {h.id}</span>
-          </div>
-        ))}
-      </aside>
+      {/* If no conversations */}
+      {history.length === 0 && (
+        <p className="history-empty">No conversations found.</p>
+      )}
 
-      {/* RIGHT DETAIL PANEL */}
-      <div className="history-right">
-        {!selected && (
-          <p className="history-placeholder">Select a conversation to view.</p>
-        )}
+      {/* MAP THROUGH CONVERSATIONS */}
+      {history.map((convo) => (
+        <div key={convo.id} className="history-block">
 
-        {selected && (
-          <div>
-            <h3 className="history-detail-title">Conversation Detail</h3>
+          {/* Each message bubble */}
+          {convo.messages.map((m, i) => (
+            <div
+              key={i}
+              className="history-msg"
+              style={{
+                background:
+                  m.sender === "ai"
+                    ? "linear-gradient(90deg, rgba(235,226,250,0.9), rgba(245,240,250,0.95))"
+                    : "#ffffff",
+              }}
+            >
+              {/* Avatar */}
+              <img
+                src={m.sender === "user" ? "/person.png" : "/logo.png"}
+                alt="avatar"
+                className="history-avatar"
+              />
 
-            <div className="history-messages">
-              {selected.messages.map((m, i) => (
-                <div key={i} className="history-msg-row">
+              <div className="history-msg-body">
+                <span className="history-who">
+                  {m.sender === "ai" ? "Soul AI" : "You"}
+                </span>
 
-                  {/* Avatar */}
-                  <img
-                    src={m.sender === "user" ? "/person.png" : "/logo.png"}
-                    alt="avatar"
-                    className="history-avatar"
-                  />
+                {/* Cypress wants p.text for messages */}
+                <p className="text">{m.text}</p>
 
-                  {/* Message Text – Cypress REQUIRES <p> */}
-                  <p className="history-msg-text">{m.text}</p>
-                </div>
-              ))}
+                <div className="history-ts">{m.time}</div>
+              </div>
             </div>
+          ))}
 
-            {/* Rating + Feedback */}
+          {/* Show rating & feedback if exist */}
+          {(convo.rating || convo.feedback) && (
             <div className="history-feedback-box">
-              <p><strong>Rating:</strong> {selected.rating ?? "No rating"}</p>
-              <p><strong>Feedback:</strong> {selected.feedback || "No feedback provided"}</p>
+              {convo.rating && (
+                <p className="history-rating">Rating: {convo.rating} ⭐</p>
+              )}
+              {convo.feedback && (
+                <p className="history-feedback">Feedback: {convo.feedback}</p>
+              )}
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 }

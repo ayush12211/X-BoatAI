@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ChatPage.css";
 import Modal from "./Modal";
-import qaData from "./data/qa.json"; // Cypress-required JSON answers
+import qaData from "./data/qa.json"; 
 
 export default function ChatPage({ history, setHistory }) {
   const [messages, setMessages] = useState([]);
@@ -14,11 +14,11 @@ export default function ChatPage({ history, setHistory }) {
 
   const cleaned = text.toLowerCase().trim();
 
-  // Cypress question: "Can you explain RESTful APIs?"
+  
   if (cleaned.includes("restful"))
     return qaData["what are restful apis"];
 
-  // exact match
+ 
   if (qaData[cleaned]) return qaData[cleaned];
 
   // partial fallback
@@ -130,7 +130,7 @@ export default function ChatPage({ history, setHistory }) {
                 {m.sender === "ai" ? "Soul AI" : "You"}
               </span>
 
-              {/* Cypress expects EXACTLY <p class="text"> */}
+             
               <p className="text">{m.text}</p>
 
               <p className="ts">{m.time}</p>
@@ -160,7 +160,7 @@ export default function ChatPage({ history, setHistory }) {
       <form className="input-row" onSubmit={handleSend}>
         <input
           className="chat-input"
-          placeholder="Message Bot AI..."  // Cypress REQUIRED
+          placeholder="Message Bot AI..."  
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
