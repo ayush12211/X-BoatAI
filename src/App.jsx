@@ -11,22 +11,22 @@ import "./Modal.css";
 export default function App() {
   const [history, setHistory] = useState([]);
 
-  // ⭐ Load from localStorage
+ 
   useEffect(() => {
-    const saved = localStorage.getItem("history");
+    const saved = localStorage.getItem("botHistory");
     if (saved) {
       setHistory(JSON.parse(saved));
     }
   }, []);
 
-  // ⭐ Save to localStorage
+  
   useEffect(() => {
-    localStorage.setItem("history", JSON.stringify(history));
+    localStorage.setItem("botHistory", JSON.stringify(history));
   }, [history]);
 
   return (
     <Router>
-      {/* ⭐ MUST BE VISIBLE FOR CYPRESS */}
+      
       <header className="cypress-header">
         <h1>Bot AI</h1>
       </header>
