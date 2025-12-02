@@ -142,18 +142,25 @@
 .cypress-header {
   width: 100%;
   height: auto;
-  padding: 0;
-  margin: 0;
+  line-height: 1px;
 
-  /* Keep in layout so Cypress sees it */
-  max-height: 2px;
   overflow: hidden;
 
-  opacity: 1 !important;
-  visibility: visible !important;
+  /* Keep it in layout */
   position: relative;
-  z-index: -1; /* ensures it does not overlap UI */
+
+  /* Make it visually tiny */
+  font-size: 1px;
+  opacity: 0.01;
+
+  /* Make sure it is visible to Cypress */
+  visibility: visible !important;
+  display: block !important;
+
+  margin: 0;
+  padding: 0;
 }
+
 
 
 
