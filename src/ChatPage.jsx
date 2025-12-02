@@ -8,7 +8,7 @@ export default function ChatPage({ history, setHistory }) {
   const [input, setInput] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  // ⭐ Unified Reply Finder
+  
   function getReply(text) {
     if (!text) return "Sorry, Did not understand your query!";
 
@@ -26,7 +26,7 @@ export default function ChatPage({ history, setHistory }) {
     return "Sorry, Did not understand your query!";
   }
 
-  // ⭐ Send Handler
+  //  Send Handler
   const handleSend = (e) => {
     if (e) e.preventDefault();
     if (!input.trim()) return;
@@ -49,7 +49,7 @@ export default function ChatPage({ history, setHistory }) {
   };
 
 
-  // ⭐ Save conversation without modal
+  
   function saveConversation() {
     if (messages.length === 0) return;
 
@@ -86,7 +86,7 @@ export default function ChatPage({ history, setHistory }) {
     });
   };
 
-  // ⭐ Modal Feedback Submission
+  
   const handleFeedbackSubmit = ({ rating, feedback }) => {
     const convo = {
       id: Date.now(),
@@ -171,24 +171,24 @@ export default function ChatPage({ history, setHistory }) {
       <form className="input-row" onSubmit={handleSend}>
         <input
           className="chat-input"
-          placeholder="Message Bot AI..."  // Cypress REQUIRED
+          placeholder="Message Bot AI..." 
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
 
         <button type="submit" className="btn-ask">Ask</button>
 
-        {/* ⭐ MODIFIED SAVE BUTTON */}
+        {/*  MODIFIED SAVE BUTTON */}
         <button
           type="button"
           className="btn-save"
           onClick={() => {
-            // ⭐ Cypress auto-save support
+            
             if (window.Cypress) {
               saveConversation();
               return;
             }
-            // ⭐ Normal user flow
+            
             setShowModal(true);
           }}
         >
